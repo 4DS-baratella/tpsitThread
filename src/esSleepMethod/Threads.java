@@ -2,7 +2,6 @@ package esSleepMethod;
 
 public class Threads {
     public static void main(String[] args) throws InterruptedException {
-        /*
         //Esercizio 1
         Thread campana1 = new Thread(new Campana("din"));
         Thread campana2 = new Thread(new Campana("don"));
@@ -21,9 +20,8 @@ public class Threads {
             e.printStackTrace();
         }
         campana3.start();
-        */
 
-
+        /*
         //Esercizio 3
         Thread campana1 = new Thread(new Campana("din"));
         Thread campana2 = new Thread(new Campana("don"));
@@ -69,5 +67,7 @@ public class Threads {
         }
         campana4.run();
         campana4.join();
+
+         */
     }
 }
