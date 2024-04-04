@@ -11,6 +11,10 @@ public class Main {
             campana2.start();
             campana3.start();
 
+            campana1.setPriority(Thread.MAX_PRIORITY);
+            campana2.setPriority(Thread.NORM_PRIORITY);
+            campana3.setPriority(Thread.MIN_PRIORITY);
+
             try{
                 Thread.sleep(1000);
             }catch (InterruptedException e){
