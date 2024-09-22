@@ -2,25 +2,24 @@ package esContoBancario;
 
 import java.util.Random;
 
-public class Persona extends Thread{
-    private String nome, cognome;
-    private ContoBancario contoBancario;
+class Persona implements Runnable {
+    private ContoBancario conto;
 
-    public Persona(String nome, String cognome){
-        this.nome = nome;
-        this.cognome = cognome;
+    public Persona(ContoBancario conto) {
+        this.conto = conto;
     }
 
     @Override
-    public void run(){
-        for(int i = 0; i < 5; i++){
-            prelievo();
+    public void run() {
+        Random rand = new Random();
+        for (int i = 0; i < 5; i++) { // Ogni persona tenta di prelevare 5 volte
+            int importo = rand.nextInt(50) + 1; // Preleva un importo casuale tra 1 e 50
+            conto.preleva(importo);
+            try {
+                Thread.sleep(100); // Simula una pausa tra i prelievi
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-    }
-
-    public void prelievo(){
-        Random random = new Random();
-        int prelievo = random.nextInt();
-        contoBancario.prelievo(prelievo);
     }
 }

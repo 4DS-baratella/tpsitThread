@@ -1,27 +1,25 @@
 package esContoBancario;
 
-public class ContoBancario{
+class ContoBancario {
     private int saldo;
 
-    public ContoBancario(int saldo) {
-        this.saldo = saldo;
+    public ContoBancario(int saldoIniziale) {
+        this.saldo = saldoIniziale;
     }
 
-    public synchronized void prelievo(int prelievo){
-        if((saldo -= prelievo) >= 0){
-            saldo -= prelievo;
-            System.out.println("Prelevati " + prelievo + " euro");
-        }else{
-            System.out.println("Il prelievo che si vuole effettuare supera il saldo");
+    //metodo sincronizzato per accesso sicuro
+    public synchronized boolean preleva(int importo) {
+        if (saldo >= importo) {
+            saldo -= importo;
+            System.out.println(Thread.currentThread().getName() + " ha prelevato " + importo + ". Saldo rimanente: " + saldo);
+            return true;
+        } else {
+            System.out.println(Thread.currentThread().getName() + " ha tentato di prelevare " + importo + " ma il saldo è insufficiente.");
+            return false;
         }
     }
 
-    public synchronized void deposito(int deposito){
-        if((saldo += deposito) < 0){
-            saldo += deposito;
-            System.out.println("Depositati " + deposito + " euro");
-        }else{
-            System.out.println("E' stato inserito un valore errato");
-        }
+    public int getSaldo() {
+        return saldo;
     }
 }
